@@ -1,6 +1,7 @@
 BEFORE RUNNING !!!!!
 
 //Clone this repo 
+
 git clone https://github.com/kevinmerlika/tripplanner.git
 
 
