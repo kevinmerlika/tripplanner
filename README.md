@@ -1,15 +1,26 @@
 BEFORE RUNNING !!!!!
+
+//Clone this repo 
+git clone https://github.com/kevinmerlika/tripplanner.git
+
+
 //You need to use these docker images for database and caching
+
+docker pull kevinmerlika98/trip-front-image:latest
 
 docker pull redis:latest 
 
 docker pull mongo:latest
+
 
 //Run these images on these ports before running api !!! 
 
 docker run -d -p 6379:6379 --name redis redis:latest
 
 docker run -d -p 27017:27017 --name mongo mongo:latest
+
+docker run -d --name trip-front -p 3000:3000 kevinmerlika98/trip-front-image
+
 
 
 //Also create .env file in root directory 
