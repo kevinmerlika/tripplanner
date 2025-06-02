@@ -1,0 +1,80 @@
+{
+  "info": {
+    "_postman_id": "e3c8a9fc-53cf-4fd9-bc10-b5a4b534a91f",
+    "name": "Trip Planner API",
+    "description": "Postman collection for Trip Planner API based on OpenAPI 3.0 specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Search Trips",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/api/search?origin=SYD&destination=GRU&sort_by=fastest",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "search"],
+          "query": [
+            { "key": "origin", "value": "SYD" },
+            { "key": "destination", "value": "GRU" },
+            { "key": "sort_by", "value": "fastest" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Save Trip",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"a749c866-7928-4d08-9d5c-a6821a583d1a\",\n  \"origin\": \"SYD\",\n  \"destination\": \"GRU\",\n  \"cost\": 625,\n  \"duration\": 5,\n  \"type\": \"flight\",\n  \"display_name\": \"from SYD to GRU by flight\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/save",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "save"]
+        }
+      }
+    },
+    {
+      "name": "List Saved Trips",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/api/saved",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "saved"]
+        }
+      }
+    },
+    {
+      "name": "Delete Trip",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/api/delete/683a54d77f04cc3d1de63f15",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "delete", "683a54d77f04cc3d1de63f15"]
+        }
+      }
+    }
+  ]
+}
