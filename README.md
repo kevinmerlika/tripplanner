@@ -29,13 +29,27 @@ docker run -d -p 27017:27017 --name mongo mongo:latest
         "url": {
           "raw": "http://localhost:4000/api/search?origin=SYD&destination=GRU&sort_by=fastest",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "4000",
-          "path": ["api", "search"],
+          "path": [
+            "api",
+            "search"
+          ],
           "query": [
-            { "key": "origin", "value": "SYD" },
-            { "key": "destination", "value": "GRU" },
-            { "key": "sort_by", "value": "fastest" }
+            {
+              "key": "origin",
+              "value": "SYD"
+            },
+            {
+              "key": "destination",
+              "value": "GRU"
+            },
+            {
+              "key": "sort_by",
+              "value": "fastest"
+            }
           ]
         }
       }
@@ -57,9 +71,14 @@ docker run -d -p 27017:27017 --name mongo mongo:latest
         "url": {
           "raw": "http://localhost:4000/api/save",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "4000",
-          "path": ["api", "save"]
+          "path": [
+            "api",
+            "save"
+          ]
         }
       }
     },
@@ -71,9 +90,14 @@ docker run -d -p 27017:27017 --name mongo mongo:latest
         "url": {
           "raw": "http://localhost:4000/api/saved",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "4000",
-          "path": ["api", "saved"]
+          "path": [
+            "api",
+            "saved"
+          ]
         }
       }
     },
@@ -85,9 +109,15 @@ docker run -d -p 27017:27017 --name mongo mongo:latest
         "url": {
           "raw": "http://localhost:4000/api/delete/683a54d77f04cc3d1de63f15",
           "protocol": "http",
-          "host": ["localhost"],
+          "host": [
+            "localhost"
+          ],
           "port": "4000",
-          "path": ["api", "delete", "683a54d77f04cc3d1de63f15"]
+          "path": [
+            "api",
+            "delete",
+            "683a54d77f04cc3d1de63f15"
+          ]
         }
       }
     }
