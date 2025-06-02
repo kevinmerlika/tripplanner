@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+      - redis
+    env_file:
+      - .env
+    networks:
+      trip-planner-network:
+        ipv4_address: 172.19.0.10
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      trip-planner-network:
+        ipv4_address: 172.19.0.11
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    networks:
+      trip-planner-network:
+        ipv4_address: 172.19.0.12
+
+volumes:
+  mongo-data:
+
+networks:
+  trip-planner-network:
+    external: true

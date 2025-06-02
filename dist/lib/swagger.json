@@ -1,0 +1,201 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Trip Planner API",
+        "version": "1.0.0",
+        "description": "An API for planning, searching, saving, and deleting travel trips between locations."
+    },
+    "paths": {
+        "/api/search": {
+            "get": {
+                "summary": "Search for available trips",
+                "description": "Returns a list of available trips between the given origin and destination, sorted by the selected criterion.",
+                "parameters": [
+                    {
+                        "name": "origin",
+                        "in": "query",
+                        "required": true,
+                        "description": "The IATA or location code for the starting point (e.g., 'SYD').",
+                        "schema": { "type": "string" }
+                    },
+                    {
+                        "name": "destination",
+                        "in": "query",
+                        "required": true,
+                        "description": "The IATA or location code for the end point (e.g., 'GRU').",
+                        "schema": { "type": "string" }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "required": true,
+                        "description": "Sort by 'fastest' (shortest duration) or 'cheapest' (lowest cost).",
+                        "schema": {
+                            "type": "string",
+                            "enum": ["fastest", "cheapest"]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching trips",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": { "$ref": "#/components/schemas/TripSearchResult" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/save": {
+            "post": {
+                "summary": "Save a trip",
+                "description": "Stores a trip in the saved trips list for future reference.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": { "$ref": "#/components/schemas/Trip" }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Trip successfully saved",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/Trip" }
+                            }
+                        }
+                    },
+                    "400": { "description": "Invalid input data" }
+                }
+            }
+        },
+        "/api/saved": {
+            "get": {
+                "summary": "Get saved trips",
+                "description": "Retrieves a list of all trips that have been previously saved.",
+                "responses": {
+                    "200": {
+                        "description": "List of saved trips",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": { "$ref": "#/components/schemas/Trip" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delete/{id}": {
+            "delete": {
+                "summary": "Delete a saved trip",
+                "description": "Deletes a saved trip by its MongoDB `_id`.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The MongoDB `_id` of the trip to delete.",
+                        "schema": { "type": "string", "example": "683a54d77f04cc3d1de63f15" }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Trip deleted successfully" },
+                    "404": { "description": "Trip not found" }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TripSearchResult": {
+                "type": "object",
+                "description": "Trip data returned from /api/search. Does NOT include _id or __v.",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "UUID identifier",
+                        "example": "a749c866-7928-4d08-9d5c-a6821a583d1a"
+                    },
+                    "origin": {
+                        "type": "string",
+                        "example": "SYD"
+                    },
+                    "destination": {
+                        "type": "string",
+                        "example": "GRU"
+                    },
+                    "cost": {
+                        "type": "number",
+                        "example": 625
+                    },
+                    "duration": {
+                        "type": "number",
+                        "example": 5
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "flight"
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "example": "from SYD to GRU by flight"
+                    }
+                },
+                "required": ["id", "origin", "destination", "cost", "duration", "type", "display_name"]
+            },
+            "Trip": {
+                "type": "object",
+                "description": "Trip data stored in the database. Includes MongoDB _id and __v.",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "example": "683a54d77f04cc3d1de63f15"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "a749c866-7928-4d08-9d5c-a6821a583d1a"
+                    },
+                    "origin": {
+                        "type": "string",
+                        "example": "SYD"
+                    },
+                    "destination": {
+                        "type": "string",
+                        "example": "GRU"
+                    },
+                    "cost": {
+                        "type": "number",
+                        "example": 625
+                    },
+                    "duration": {
+                        "type": "number",
+                        "example": 5
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "flight"
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "example": "from SYD to GRU by flight"
+                    },
+                    "__v": {
+                        "type": "integer",
+                        "example": 0
+                    }
+                },
+                "required": ["_id", "id", "origin", "destination", "cost", "duration", "type", "display_name", "__v"]
+            }
+        }
+    }
+}
