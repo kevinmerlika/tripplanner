@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "e3c8a9fc-53cf-4fd9-bc10-b5a4b534a91f",
     "name": "Trip Planner API",
-    "description": "Postman collection for Trip Planner API based on OpenAPI 3.0 specification",
+    "description": "Postman collection for Trip Planner.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [

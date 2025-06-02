@@ -3,7 +3,7 @@
   "info": {
     "title": "Trip Planner API",
     "version": "1.0.0",
-    "description": "An API for planning, searching, saving, and deleting travel trips between locations."
+    "description": "An API for planning, searching, saving, and deleting travel trips"
   },
   "paths": {
     "/api/search": {
