@@ -13,9 +13,13 @@ docker run -d -p 27017:27017 --name mongo mongo:latest
 //Also create .env file in root directory 
 
 PORT=4000
+
 MONGO_URI=mongodb://localhost:27017/tripplanner
+
 API_KEY= api key
+
 REDIS_URL=redis://localhost:6379
+
 TRIPS_API_URL= your url
 
 Cannot share url and api key, database and redis is shared since it will run on your machine for testing purposes
