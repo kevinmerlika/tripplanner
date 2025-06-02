@@ -8,7 +8,7 @@ export class TripController {
   private tripService: TripService;
   private tripRepo: TripRepository;
 
-  //Dependency injection, could have used a library like tsyringe 
+  //Dependency injection, could have used a library like tsyringe but since it is not a complex api just followed traditional way
   constructor(tripService: TripService, tripRepo: TripRepository) {
     this.tripService = tripService;
     this.tripRepo = tripRepo;
@@ -49,6 +49,21 @@ export class TripController {
     }
   }
 
+
+
+
+
+
+    /**
+   * @route POST /api/save
+   * @description Saves a trip to mongo
+   * @param {Request} req - request 
+   * @param {Response} res - response 
+   * @body {Trip} req.body - The trip object which will be saved
+   * @returns {Trip} 201 - The saved trip object on mongo
+   * @returns {HttpError} 500 - If saving fails
+   */
+
   async saveTrip(req: Request, res: Response) {
     try {
       const saved = await this.tripRepo.saveTrip(req.body);
@@ -60,6 +75,20 @@ export class TripController {
     }
   }
 
+
+
+
+
+   /**
+   * @route GET /api/saved
+   * @description Retrieves all saved trips from mongodb
+   * @param {Request} _req - request object , in this case it is not used
+   * @param {Response} res - response 
+   * @returns {Trip[]} 200 - Array of saved trips
+   * @returns {HttpError} 500 - If fetch fails
+   */
+
+
   async getSavedTrips(_req: Request, res: Response) {
     try {
       const trips = await this.tripRepo.getTrips();
@@ -70,6 +99,25 @@ export class TripController {
       res.status(500).json({ error: 'Failed to fetch saved trips' });
     }
   }
+
+
+
+
+
+
+
+
+
+    /**
+   * @route DELETE /api/delete/:id
+   * @description Deletes a trip by using id. 
+   * @param {Request} req - request 
+   * @param {Response} res - response
+   * @param {string} req.params.id - ID of trip that should be deleted
+   * @returns {void} 204 - just status code is returned
+   * @returns {HttpError} 500 - If delete fails 
+   */
+
 
   async deleteTrip(req: Request, res: Response) {
     try {
