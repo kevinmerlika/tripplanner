@@ -1,7 +1,8 @@
 BEFORE RUNNING !!!!!
 //You need to use these docker images for database and caching
 
-docker pull redis:latest
+docker pull redis:latest 
+
 docker pull mongo:latest
 
 //Run these images on these ports before running api !!! 
