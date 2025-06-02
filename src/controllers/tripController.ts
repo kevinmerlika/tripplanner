@@ -67,7 +67,7 @@ export class TripController {
   async saveTrip(req: Request, res: Response) {
     try {
       const saved = await this.tripRepo.saveTrip(req.body);
-      console.log("request made");
+      // console.log("request made");
       
       res.status(201).json(saved);
     } catch (err) {
@@ -92,7 +92,7 @@ export class TripController {
   async getSavedTrips(_req: Request, res: Response) {
     try {
       const trips = await this.tripRepo.getTrips();
-      console.log(trips);
+      // console.log(trips);
       
       res.json(trips);
     } catch (err) {
@@ -121,8 +121,8 @@ export class TripController {
 
   async deleteTrip(req: Request, res: Response) {
     try {
-        console.log("Delete req made");
-        console.log(req.params.id);
+        // console.log("Delete req made");
+        // console.log(req.params.id);
         
       await this.tripRepo.deleteTrip(req.params.id);
       res.status(204).send();
