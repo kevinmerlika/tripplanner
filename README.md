@@ -44,4 +44,7 @@ Cannot share url and api key, database and redis is shared since it will run on 
 //Go to tripplaner database -> trips -> press button Find
 
 
+//I have added a test for a method searchtrip on tripController, run by using command "npm test" 
+
+
 Thank you
