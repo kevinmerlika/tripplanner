@@ -3,7 +3,7 @@ import { TripService } from '../../services/tripService';
 import { TripRepository } from '../../services/tripRepo';
 import { HttpError } from '../../models/error';
 
-// Mocks for express methods 
+// Mocks for express methods
 const mockJson = jest.fn();
 const mockSend = jest.fn();
 const mockStatus = jest.fn().mockReturnValue({ json: mockJson, send: mockSend });
@@ -14,9 +14,7 @@ const mockResponse = () =>
     status: mockStatus,
     json: mockJson,
     send: mockSend,
-  } as any);
-
-
+  }) as any;
 
 describe('TripController', () => {
   let controller: TripController;
@@ -66,7 +64,7 @@ describe('TripController', () => {
     });
 
     it('should return trips sorted by cheapest', async () => {
-            // Creating a fake request for cheapest sorting
+      // Creating a fake request for cheapest sorting
       const req = {
         query: {
           origin: 'LAX',
@@ -88,12 +86,7 @@ describe('TripController', () => {
     });
   });
 
-
-
-
-
-
-  //Testing getSavedTrips method 
+  //Testing getSavedTrips method
 
   describe('getSavedTrips', () => {
     it('should return all saved trips', async () => {
@@ -102,9 +95,7 @@ describe('TripController', () => {
       const trips = [{ id: '1' }, { id: '2' }] as any;
       tripRepo.getTrips.mockResolvedValue(trips);
 
-
       await controller.getSavedTrips(req, res);
-
 
       expect(tripRepo.getTrips).toHaveBeenCalled();
       expect(mockJson).toHaveBeenCalledWith(trips);
@@ -117,17 +108,13 @@ describe('TripController', () => {
       tripRepo.getTrips.mockRejectedValue(new Error('DB error'));
       await controller.getSavedTrips(req, res);
 
-       expect(mockStatus).toHaveBeenCalledWith(500);
-       expect(mockJson).toHaveBeenCalledWith({ error: 'Failed to fetch saved trips' });
+      expect(mockStatus).toHaveBeenCalledWith(500);
+      expect(mockJson).toHaveBeenCalledWith({ error: 'Failed to fetch saved trips' });
     });
   });
 
-
-
-
-
-    //DeleteTrip method test
-   describe('deleteTrip', () => {
+  //DeleteTrip method test
+  describe('deleteTrip', () => {
     it('should delete trip by id and return 204', async () => {
       const req = { params: { id: '789' } } as any;
       const res = mockResponse();

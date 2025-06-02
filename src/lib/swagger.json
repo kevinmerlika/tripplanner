@@ -194,7 +194,17 @@
             "example": 0
           }
         },
-        "required": ["_id", "id", "origin", "destination", "cost", "duration", "type", "display_name", "__v"]
+        "required": [
+          "_id",
+          "id",
+          "origin",
+          "destination",
+          "cost",
+          "duration",
+          "type",
+          "display_name",
+          "__v"
+        ]
       }
     }
   }

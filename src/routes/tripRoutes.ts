@@ -3,7 +3,7 @@ import { TripController } from '../controllers/tripController';
 import { tripRepo, tripService } from '../singletons';
 
 const router = Router();
-//Subroutes for Api route 
+//Subroutes for Api route
 const tripController = new TripController(tripService, tripRepo);
 
 router.get('/search', tripController.searchTrips.bind(tripController));
