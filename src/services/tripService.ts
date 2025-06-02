@@ -78,8 +78,8 @@ export class TripService {
 
 
     //Logging but should be removed in production
-    console.log(`[TripService] Fetching trips from URL: ${url.toString()}`);
-    console.log(`[TripService] Using API Key: ${apiKey}`);
+    // console.log(`[TripService] Fetching trips from URL: ${url.toString()}`);
+    // console.log(`[TripService] Using API Key: ${apiKey}`);
 
 
     //Api call, fetching 3rd Party API data.
