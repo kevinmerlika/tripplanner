@@ -18,7 +18,13 @@ docker run -d -p 6379:6379 --name redis redis:latest
 
 docker run -d -p 27017:27017 --name mongo mongo:latest
 
-docker run -d --name trip-front -p 3000:3000 kevinmerlika98/trip-front-image
+
+//Optional-------------------------------------------------------------------
+
+docker run -d --name trip-front -p 3000:3000 kevinmerlika98/trip-front-image|
+
+----------------------------------------------------------------------------|
+
 
 //Also create .env file in root directory
 
