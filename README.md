@@ -43,6 +43,7 @@ Cannot share url and api key, database and redis is shared since it will run on 
 //If you need to check how data is stored install MongoDBCompass  and connect to database with url " mongodb://localhost:27017 "
 //Go to tripplaner database -> trips -> press button Find
 
+//Run by using command " npm start " after turning on required docker containers like Mongo and Redis, also creating the .env file on root directory based on above text. Front-End docker container is optional if you would like to test it. 
 
 //I have added a test for a method searchtrip on tripController, run by using command "npm test" 
 
