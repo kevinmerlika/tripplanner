@@ -82,6 +82,7 @@ describe('TripController', () => {
 
       await controller.searchTrips(req, res);
 
+      //so here we are checking if the parameters passed correspond to the ones passed on req
       expect(tripService.searchTrips).toHaveBeenCalledWith('LAX', 'JFK', 'cheapest');
       expect(mockJson).toHaveBeenCalledWith(fakeTrips);
     });
