@@ -87,4 +87,38 @@ describe('TripController', () => {
       expect(mockJson).toHaveBeenCalledWith(fakeTrips);
     });
   });
+
+
+
+
+
+
+  //Testing getSavedTrips method 
+
+  describe('getSavedTrips', () => {
+    it('should return all saved trips', async () => {
+      const req = {} as any;
+      const res = mockResponse();
+      const trips = [{ id: '1' }, { id: '2' }] as any;
+      tripRepo.getTrips.mockResolvedValue(trips);
+
+
+      await controller.getSavedTrips(req, res);
+
+
+      expect(tripRepo.getTrips).toHaveBeenCalled();
+      expect(mockJson).toHaveBeenCalledWith(trips);
+    });
+
+    it('should return 500 on fetch error', async () => {
+      const req = {} as any;
+      const res = mockResponse();
+
+      tripRepo.getTrips.mockRejectedValue(new Error('DB error'));
+      await controller.getSavedTrips(req, res);
+
+       expect(mockStatus).toHaveBeenCalledWith(500);
+       expect(mockJson).toHaveBeenCalledWith({ error: 'Failed to fetch saved trips' });
+    });
+  });
 });
