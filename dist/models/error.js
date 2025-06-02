@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HttpError = void 0;
-// Define this once, e.g., in errors.ts or at the top of your service/controller file
+//My own error class
 class HttpError extends Error {
     constructor(statusCode, message) {
         super(message);
