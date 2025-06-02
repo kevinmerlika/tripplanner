@@ -29,6 +29,7 @@ Cannot share url and api key, database and redis is shared since it will run on 
 //Testing using Postman, import postman.json which is on root directory (copy paste) into Postman -> Import , or go to Swagger Documentation  -->  http://localhost:4000/docs/  
 
 //If you need to check how data is stored install MongoDBCompass  and connect to database with url " mongodb://localhost:27017 "
+//Go to tripplaner database -> trips -> press button Find
 
 
 Thank you
