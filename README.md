@@ -7,6 +7,7 @@ docker pull mongo:latest
 //Run these images on these ports before running api !!! 
 
 docker run -d -p 6379:6379 --name redis redis:latest
+
 docker run -d -p 27017:27017 --name mongo mongo:latest
 
 
