@@ -5,8 +5,8 @@ import { HttpError } from '../../models/error';
 
 // Mocks for express methods 
 const mockJson = jest.fn();
-const mockStatus = jest.fn().mockReturnValue({ json: mockJson });
 const mockSend = jest.fn();
+const mockStatus = jest.fn().mockReturnValue({ json: mockJson, send: mockSend });
 
 // helper to create a mocked res object for tests
 const mockResponse = () =>
@@ -119,6 +119,35 @@ describe('TripController', () => {
 
        expect(mockStatus).toHaveBeenCalledWith(500);
        expect(mockJson).toHaveBeenCalledWith({ error: 'Failed to fetch saved trips' });
+    });
+  });
+
+
+
+
+
+    //DeleteTrip method test
+   describe('deleteTrip', () => {
+    it('should delete trip by id and return 204', async () => {
+      const req = { params: { id: '789' } } as any;
+      const res = mockResponse();
+
+      await controller.deleteTrip(req, res);
+
+      expect(tripRepo.deleteTrip).toHaveBeenCalledWith('789');
+      expect(mockStatus).toHaveBeenCalledWith(204);
+      expect(mockSend).toHaveBeenCalled();
+    });
+
+    it('should return 500 on delete error', async () => {
+      const req = { params: { id: '789' } } as any;
+      const res = mockResponse();
+
+      tripRepo.deleteTrip.mockRejectedValue(new Error('Delete error'));
+      await controller.deleteTrip(req, res);
+
+      expect(mockStatus).toHaveBeenCalledWith(500);
+      expect(mockJson).toHaveBeenCalledWith({ error: 'Failed to delete trip' });
     });
   });
 });
